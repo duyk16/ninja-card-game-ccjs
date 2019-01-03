@@ -7,7 +7,6 @@ cc.Class({
             type: cc.Prefab
         },
         lockCard: false,
-        cardCllect: 0,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -22,20 +21,21 @@ cc.Class({
             data: null,
             position: {x: null, y: null}
         }
-
         // Start initial method
-        this.spawnCards()
-
-        cc.log(this.cards[0][0].getComponent('Card'))
+        // this.spawnCards()
     },
 
-    spawnCards(width = 9, height = 4) {
-        cc.log(this)
+    spawnCards(width = 9, height = 4, diff = 18) {
         // Create Matrix X x Y
         this.cards = new Array(width)
         
         // Create an array with width*height number
-        var orderData = this.randomCards(width, height)
+        var orderData = this.randomCards(width, height, diff)
+
+        // Random order Sprite Frame
+        this.cardPrefab.data.getComponent('Card').frontCardImage.sort(() => {
+            return .5 - Math.random()
+        })
 
         for(let i = 0; i < width; i++) {
             this.cards[i] = new Array(height);
@@ -73,8 +73,10 @@ cc.Class({
             this.lockCard = !this.lockCard
             this.cards[y][x].getComponent('Card').upCardAction()
             if (data === firstCard.data) {
-                // Destroy and gain Score
+                // Gain Score and destroy
+                this.game.gainScore()
                 setTimeout(() => {
+                    // Destroy couple matched card
                     this.destroyCard(x, y)
                     this.destroyCard(firstCard.position.x, firstCard.position.y)
                     firstCard.data = null
@@ -104,9 +106,9 @@ cc.Class({
         this.cards[y][x].getComponent('Card').downCardAction()
     },
 
-    randomCards(w = 9, h = 4) {
+    randomCards(w, h, diff) {
         var orderData = [];
-        var numberOfType = 8
+        var numberOfType = diff
 
         for (let i = 0; i < w * h / 2; i++) {
             // create random number in [0 - 17]

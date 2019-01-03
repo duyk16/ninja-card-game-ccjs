@@ -41,9 +41,9 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.5140569133280332,
-      "y": 0.5140569133280332,
-      "z": 0.5140569133280332
+      "x": 0.64608154296875,
+      "y": 0.64608154296875,
+      "z": 0.64608154296875
     },
     "_quat": {
       "__type__": "cc.Quat",
@@ -607,7 +607,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 82.44,
+      "width": 81.67,
       "height": 60
     },
     "_anchorPoint": {
@@ -654,8 +654,8 @@
     "_srcBlendFactor": 1,
     "_dstBlendFactor": 1,
     "_useOriginalSize": false,
-    "_string": "843",
-    "_N$string": "843",
+    "_string": "100",
+    "_N$string": "100",
     "_fontSize": 45,
     "_lineHeight": 60,
     "_enableWrapText": true,
@@ -1520,7 +1520,6 @@
       "__uuid__": "19e47c1f-a256-414b-af50-7660b300d22f"
     },
     "lockCard": false,
-    "cardCllect": 0,
     "_id": "02YfeSZ4tD/oWEYff5WXqp"
   },
   {
@@ -1548,6 +1547,14 @@
       "__id__": 2
     },
     "_enabled": true,
+    "scoreDisplay": {
+      "__id__": 13
+    },
+    "score": 0,
+    "cardCollect": 0,
+    "main": {
+      "__id__": 32
+    },
     "_id": "df0oV+6CRE+qr3YqlWA4rl"
   }
 ]
