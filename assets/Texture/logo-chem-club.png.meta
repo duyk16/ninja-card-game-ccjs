@@ -1,0 +1,32 @@
+{
+  "ver": "2.3.0",
+  "uuid": "bc43c285-c294-4174-ad54-3e4417d3365c",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "platformSettings": {},
+  "subMetas": {
+    "logo-chem-club": {
+      "ver": "1.0.3",
+      "uuid": "6676d51c-3f8e-48a1-9c4e-613c09a7fbc2",
+      "rawTextureUuid": "bc43c285-c294-4174-ad54-3e4417d3365c",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 236,
+      "height": 133,
+      "rawWidth": 236,
+      "rawHeight": 133,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
