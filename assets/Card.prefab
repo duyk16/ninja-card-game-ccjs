@@ -32,10 +32,13 @@
       },
       {
         "__id__": 10
+      },
+      {
+        "__id__": 12
       }
     ],
     "_prefab": {
-      "__id__": 12
+      "__id__": 13
     },
     "_opacity": 255,
     "_color": {
@@ -390,6 +393,8 @@
       "__id__": 7
     },
     "lockRotate": false,
+    "data": 0,
+    "position": null,
     "_id": ""
   },
   {
@@ -473,6 +478,25 @@
     "_componentId": "9548fx+brZLWLhgfuSIc9nW",
     "handler": "flipCard",
     "customEventData": ""
+  },
+  {
+    "__type__": "cc.Animation",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "_defaultClip": {
+      "__uuid__": "b4c0ba7a-22bb-4b31-8ae5-332d2ca8ef4d"
+    },
+    "_clips": [
+      {
+        "__uuid__": "b4c0ba7a-22bb-4b31-8ae5-332d2ca8ef4d"
+      }
+    ],
+    "playOnLoad": false,
+    "_id": ""
   },
   {
     "__type__": "cc.PrefabInfo",

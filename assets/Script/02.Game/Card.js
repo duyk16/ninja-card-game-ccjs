@@ -67,5 +67,11 @@ cc.Class({
         }, speedRotate)
 
     },
+
+    deleteCard() {
+        this.node.getComponent(cc.Animation).play()
+        this.node.runAction(cc.scaleTo(0.2, 1.1))
+        this.node.runAction(cc.fadeOut(0.3))
+    }
     // update (dt) {},
 });

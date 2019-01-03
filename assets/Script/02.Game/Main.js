@@ -25,9 +25,12 @@ cc.Class({
 
         // Start initial method
         this.spawnCards()
+
+        cc.log(this.cards[0][0].getComponent('Card'))
     },
 
-    spawnCards(width = 9, height = 2) {
+    spawnCards(width = 9, height = 4) {
+        cc.log(this)
         // Create Matrix X x Y
         this.cards = new Array(width)
         
@@ -72,7 +75,6 @@ cc.Class({
             if (data === firstCard.data) {
                 // Destroy and gain Score
                 setTimeout(() => {
-                    cc.delayTime(1000);
                     this.destroyCard(x, y)
                     this.destroyCard(firstCard.position.x, firstCard.position.y)
                     firstCard.data = null
@@ -95,7 +97,7 @@ cc.Class({
     },
 
     destroyCard(x, y) {
-        this.cards[y][x].getComponent('Card').node.opacity = 0
+        this.cards[y][x].getComponent('Card').deleteCard()
     },
 
     downCardAction(x, y) {
@@ -104,11 +106,11 @@ cc.Class({
 
     randomCards(w = 9, h = 4) {
         var orderData = [];
-        var count = w * h / 2;
+        var numberOfType = 8
 
-        for (let i = 0; i < count; i++) {
+        for (let i = 0; i < w * h / 2; i++) {
             // create random number in [0 - 17]
-            let num = Math.floor(count * Math.random())
+            let num = Math.floor(numberOfType * Math.random())
 
             // push to array
             orderData.push(num)
