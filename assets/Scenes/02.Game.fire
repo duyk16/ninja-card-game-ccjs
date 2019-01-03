@@ -1519,6 +1519,7 @@
     "cardPrefab": {
       "__uuid__": "19e47c1f-a256-414b-af50-7660b300d22f"
     },
+    "lockCard": false,
     "_id": "02YfeSZ4tD/oWEYff5WXqp"
   },
   {

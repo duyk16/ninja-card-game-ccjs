@@ -15,46 +15,57 @@ cc.Class({
             type: cc.Sprite
         },
         lockRotate: false,
-        data: 0
+        data: 0,
+        position: null, // {x, y}
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
+        // Declare state 
+
         // Hide front card
-        this.setFrontImage(1);
         this.frontCard.node.scaleX = 0
+
+        // Set data and image for card
+        this.frontCard.spriteFrame = this.frontCardImage[this.data]
     },
 
     start () {
       
     },
 
-    setFrontImage() {
-        this.frontCard.spriteFrame = this.frontCardImage[this.data]
+    flipCard() {
+        // Check Lock status
+        let currentCard = {}
+        currentCard.data = this.data
+        currentCard.position = {
+            x: this.position.x, 
+            y: this.position.y
+        }
+        
+        this.main.checkCard(currentCard)        
     },
 
-    flipCard() {
-        const timeDisplay = 800;
-        const timeRotate = 100;
-        // Check Lock status
-        if (!this.lockRotate) {
-            // Lock rotate
-            this.lockRotate = true
+    upCardAction() {
+        // Set speed
+        const speedRotate = 150;
+        this.backCard.node.runAction(cc.scaleTo(speedRotate / 1000, 0, 1));
+        setTimeout(() => {
+            this.frontCard.node.runAction(cc.scaleTo(speedRotate / 1000, 1, 1))
+        }, speedRotate)
+    },
 
-            this.backCard.node.runAction(cc.scaleTo(timeRotate / 1000, 0, 1));
-            setTimeout(() => {
-                this.frontCard.node.runAction(cc.scaleTo(timeRotate / 1000, 1, 1))
-                setTimeout(() => {
-                    this.frontCard.node.runAction(cc.scaleTo(timeRotate / 1000, 0, 1))
-                }, timeDisplay)
-            }, timeRotate)
-            setTimeout(() => {
-                this.backCard.node.runAction(cc.scaleTo(timeRotate / 1000, 1, 1))
-                // Unlock rotate
-                this.lockRotate = false
-            }, timeRotate * 2 + timeDisplay)
-        }
-    }
+    downCardAction() {
+        // Set speed
+        const speedRotate = 100;
+
+        this.frontCard.node.runAction(cc.scaleTo(speedRotate / 1000, 0, 1));
+        setTimeout(() => {
+            this.backCard.node.runAction(cc.scaleTo(speedRotate / 1000, 1, 1))
+            this.main.lockRotate = false
+        }, speedRotate)
+
+    },
     // update (dt) {},
 });
