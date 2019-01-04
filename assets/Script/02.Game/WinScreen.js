@@ -25,7 +25,6 @@ cc.Class({
         this.game.reloadRound()
     },
     nextLevel() {
-        this.game.saveGame()
         cc.director.loadScene('02.Game');
     }
     // update (dt) {},
