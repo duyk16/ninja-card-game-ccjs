@@ -21,12 +21,6 @@ cc.Class({
         //     this.node.runAction(cc.scaleTo(0.1, 1))
         // }, 200)
     },
-    onEnable() {
-        
-    },
-    start () {
-
-    },
 
     // update (dt) {},
 });
