@@ -6,7 +6,7 @@ cc.Class({
     },
 
     playAgain() {
-        cc.director.loadScene('02.Game');
+        this.game.reloadRound()
     },
     // update (dt) {},
 });

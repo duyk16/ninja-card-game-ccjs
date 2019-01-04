@@ -21,6 +21,12 @@ cc.Class({
         //     this.node.runAction(cc.scaleTo(0.1, 1))
         // }, 200)
     },
-
+    playAgain() {
+        this.game.reloadRound()
+    },
+    nextLevel() {
+        this.game.saveGame()
+        cc.director.loadScene('02.Game');
+    }
     // update (dt) {},
 });
