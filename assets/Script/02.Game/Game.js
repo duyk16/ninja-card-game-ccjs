@@ -1,3 +1,5 @@
+const userDB        = "userNinjaCard"
+
 cc.Class({
     extends: cc.Component,
 
@@ -30,13 +32,8 @@ cc.Class({
             default: null,
             type: cc.Node
         },
-        reloadButton: {
-            default: null,
-            type: cc.Button
-        },
     },
 
-    // LIFE-CYCLE CALLBACKS:
     onLoad() {
         this.setState()
         this.loadUserData()
@@ -45,27 +42,28 @@ cc.Class({
     },
 
     setState() {
-        this.score = 0,
-            this.cardCollect = 0,
-            this.winStatus = false,
-
-            this.main.getComponent('Main').game = this
-        this.timeLabel.getComponent('TimeLabel').game = this
-        this.timeProgress.getComponent('ProgressBar').game = this
-        this.winScreen.getComponent('WinScreen').game = this
-        this.loseScreen.getComponent('LoseScreen').game = this
+        this.score          = 0
+        this.cardCollect    = 0
+        this.level          = 0
+        this.winStatus      = false
+        
+        this.main.getComponent('Main').game                 = this
+        this.timeLabel.getComponent('TimeLabel').game       = this
+        this.timeProgress.getComponent('ProgressBar').game  = this
+        this.winScreen.getComponent('WinScreen').game       = this
+        this.loseScreen.getComponent('LoseScreen').game     = this
 
         this.winScreen.active = false
         this.loseScreen.active = false
     },
 
     loadUserData() {
-        let UserData = cc.sys.localStorage.getItem('userNinjaCard')
-        if (!UserData) {
-            this.setDataInit()
-        }
+        let UserData = cc.sys.localStorage.getItem(userDB)
+        
+        !UserData && this.setDataInit()
+
         // wait data if init
-        UserData = JSON.parse(cc.sys.localStorage.getItem('userNinjaCard'))
+        UserData = JSON.parse(cc.sys.localStorage.getItem(userDB))
         if (UserData.playerLevel > GameConfig.levelMax) {
             UserData.playerLevel = 0
         }
@@ -137,13 +135,37 @@ cc.Class({
 
     winAction() {
         this.winStatus = true
-        window.UserData.playerLevel += 1;
+        this.getPlayerRank()
         this.saveGame()
+
         setTimeout(() => { // wait destroy card animation
             this.winScreen.getComponent('WinScreen').playerScore.string = this.score
             this.winScreen.active = true
         }, 900)
+    },
 
+    getPlayerRank() {
+        let rankBoard = window.UserData.rankBoard;
+        let userRank = null;
+        let rank = 9;
+
+        while (this.score > rankBoard[rank].score) {
+            userRank = rank
+            rank--
+        }
+
+        if (userRank) {
+            rankBoard[userRank] = {
+                name: "You",
+                score: this.score
+            }
+            // EDIT rank board
+            window.UserData.rankBoard = rankBoard
+        }
+    },
+
+    getHighscore() {
+        cc.director.loadScene('03.Highscore')
     },
 
     reloadRound() {
@@ -152,14 +174,11 @@ cc.Class({
 
     setDataInit() {
         const userDataInit = window.UserDataInit
-        const dbName = "userNinjaCard"
-        cc.sys.localStorage.setItem(dbName, JSON.stringify(userDataInit));
-        cc.log('Set data done')
+        cc.sys.localStorage.setItem(userDB, JSON.stringify(userDataInit));
     },
 
     saveGame() {
         const userData = window.UserData
-        const dbName = "userNinjaCard"
-        cc.sys.localStorage.setItem(dbName, JSON.stringify(userData));
+        cc.sys.localStorage.setItem(userDB, JSON.stringify(userData));
     }
 });

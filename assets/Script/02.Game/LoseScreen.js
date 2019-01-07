@@ -6,7 +6,7 @@ cc.Class({
     },
 
     playAgain() {
+        
         this.game.reloadRound()
     },
-    // update (dt) {},
 });

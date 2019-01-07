@@ -16,15 +16,10 @@ cc.Class({
 
     onLoad () {
         this.bestScore.string = '1050'
-        // this.node.scale = 0.9
-        // setTimeout(() => {
-        //     this.node.runAction(cc.scaleTo(0.1, 1))
-        // }, 200)
-    },
-    playAgain() {
-        this.game.reloadRound()
     },
     nextLevel() {
+        window.UserData.playerLevel += 1;
+        this.game.saveGame()
         cc.director.loadScene('02.Game');
     }
     // update (dt) {},

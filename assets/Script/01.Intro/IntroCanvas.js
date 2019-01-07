@@ -16,6 +16,10 @@ cc.Class({
 
     },
 
+    getHighscore() {
+        cc.director.loadScene('03.Highscore')
+    },
+
     playGame() {
         cc.director.loadScene('02.Game')
     }
