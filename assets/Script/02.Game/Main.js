@@ -56,9 +56,9 @@ cc.Class({
     },
 
     checkCard(currentCard) {
-        let {firstCard} = this
-        let {x, y} = currentCard.position
-        let {data} = currentCard
+        let { firstCard } = this
+        let { x, y } = currentCard.position
+        let { data } = currentCard
         // Check first card is up?
         if (firstCard.position.x == null && firstCard.position.y == null) {
             firstCard.position = {x, y}

@@ -14,6 +14,14 @@ cc.Class({
             default: null,
             type: cc.Sprite
         },
+        flipSound: {
+            default: null,
+            type: cc.AudioClip,
+        },
+        collectSound: {
+            default: null,
+            type: cc.AudioClip
+        },
         lockRotate: false,
         data: 0,
         position: null, // {x, y}
@@ -22,17 +30,13 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        // Declare state 
-
         // Hide front card
         this.frontCard.node.scaleX = 0
 
         // Set data and image for card
         this.frontCard.spriteFrame = this.frontCardImage[this.data]
-    },
 
-    start () {
-      
+        // setTimeout(this.playFlipCardSound(), 1000)
     },
 
     flipCard() {
@@ -54,6 +58,10 @@ cc.Class({
         setTimeout(() => {
             this.frontCard.node.runAction(cc.scaleTo(speedRotate / 1000, 1, 1))
         }, speedRotate)
+
+        // play sound
+        cc.audioEngine.play(this.flipSound, false, 1);
+        
     },
 
     downCardAction() {
@@ -72,6 +80,8 @@ cc.Class({
         this.node.getComponent(cc.Animation).play()
         this.node.runAction(cc.scaleTo(0.2, 1.1))
         this.node.runAction(cc.fadeOut(0.3))
-    }
-    // update (dt) {},
+
+        // Play collect sound
+        cc.audioEngine.play(this.collectSound, false, 0.2);        
+    },
 });
