@@ -10,28 +10,28 @@ window.GameConfig = {
         },
         {
             index: 2,
-            size: { x: 8, y: 1 },
+            size: { x: 4, y: 2 },
             diff: 2,
             point: 15,
             time: 30
         },
         {
             index: 3,
-            size: { x: 8, y: 1 },
+            size: { x: 4, y: 2 },
             diff: 3,
             point: 20,
             time: 40
         },
         {
             index: 4,
-            size: { x: 9, y: 2 },
+            size: { x: 8, y: 3 },
             diff: 3,
             point: 20,
             time: 50
         },
         {
             index: 5,
-            size: { x: 9, y: 2 },
+            size: { x: 8, y: 3 },
             diff: 5,
             point: 25,
             time: 60
@@ -67,7 +67,7 @@ window.GameConfig = {
         {
             index: 10,
             size: { x: 9, y: 4 },
-            diff: 13,
+            diff: 15,
             point: 45,
             time: 100
         },

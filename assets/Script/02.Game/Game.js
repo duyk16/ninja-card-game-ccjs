@@ -80,7 +80,7 @@ cc.Class({
             y: GameConfig.level[i].size.y,
             cardTotal: () => this.size.x * this.size.y
         },
-            this.diff = GameConfig.level[i].diff
+        this.diff = GameConfig.level[i].diff
         this.point = GameConfig.level[i].point
         this.time = GameConfig.level[i].time
     },
@@ -95,7 +95,25 @@ cc.Class({
         this.scoreDisplay()
         // SHOW level
         this.levelDisplay()
-
+        if (this.level < 1) {
+            // 2 cols x 2 rows
+            this.main.node.width = 250
+            this.main.node.height = 300
+        }
+        else if (this.level < 3) {
+            // 4 cols x 2 rows
+            this.main.node.width = 450
+            this.main.node.height = 300
+        }
+        else if (this.level < 5) {
+            // 8 cols x 3 rows
+            this.main.node.width = 900
+            this.main.node.height = 450
+        } else {
+            this.main.node.width = 980
+            this.main.node.height = 520
+        }
+        
         // SET size & diff
         main.spawnCards(size.x, size.y, diff)
 

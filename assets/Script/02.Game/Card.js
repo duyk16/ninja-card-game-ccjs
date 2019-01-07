@@ -25,6 +25,8 @@ cc.Class({
         lockRotate: false,
         data: 0,
         position: null, // {x, y}
+        sound: true,
+        status: true,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -35,8 +37,6 @@ cc.Class({
 
         // Set data and image for card
         this.frontCard.spriteFrame = this.frontCardImage[this.data]
-
-        // setTimeout(this.playFlipCardSound(), 1000)
     },
 
     flipCard() {
@@ -48,7 +48,7 @@ cc.Class({
             y: this.position.y
         }
         
-        this.main.checkCard(currentCard)        
+        this.status && this.main.checkCard(currentCard)        
     },
 
     upCardAction() {
@@ -60,7 +60,7 @@ cc.Class({
         }, speedRotate)
 
         // play sound
-        cc.audioEngine.play(this.flipSound, false, 1);
+        this.sound && cc.audioEngine.play(this.flipSound, false, 1);
         
     },
 
@@ -80,7 +80,9 @@ cc.Class({
         this.node.getComponent(cc.Animation).play()
         this.node.runAction(cc.scaleTo(0.2, 1.1))
         this.node.runAction(cc.fadeOut(0.3))
-
+        this.sound = false
+        this.status = false
+        
         // Play collect sound
         cc.audioEngine.play(this.collectSound, false, 0.2);        
     },
