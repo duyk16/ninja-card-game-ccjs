@@ -75,9 +75,6 @@ window.GameConfig = {
 }
 
 window.UserDataInit = {
-    playerLevel: 0,
-    playerHighscore: 0,
-    playerRank: null,
     rankBoard: [
         { name: "Latasha Rosario", score: 1000 },
         { name: "Turner Kane", score: 900 },
@@ -90,7 +87,6 @@ window.UserDataInit = {
         { name: "Ninja Bot", score: 200 },
         { name: "Ninja Bot", score: 100 },
     ],
-    levelHighscore: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100,]
 }
-window.UserData = {}
+window.test = 1
 // cc.log(cc.sys.localStorage.getItem('userNinjaCard'))

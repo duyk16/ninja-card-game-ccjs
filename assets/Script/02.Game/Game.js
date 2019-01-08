@@ -12,6 +12,10 @@ cc.Class({
             default: null,
             type: cc.Label
         },
+        scoreEndLabel: {
+            default: null,
+            type: cc.Label
+        },
         main: {
             default: null,
             type: cc.Component
@@ -24,6 +28,10 @@ cc.Class({
             default: null,
             type: cc.Node
         },
+        newHighscoreScreen: {
+            default: null,
+            type: cc.Node
+        },
         timeLabel: {
             default: null,
             type: cc.Label
@@ -31,6 +39,10 @@ cc.Class({
         timeProgress: {
             default: null,
             type: cc.Node
+        },
+        highscoreEditbox: {
+            default: null,
+            type: cc.EditBox,
         },
     },
 
@@ -55,13 +67,19 @@ cc.Class({
 
         this.winScreen.active = false
         this.loseScreen.active = false
+        this.newHighscoreScreen.active = false
     },
 
     loadUserData() {
-        let UserData = cc.sys.localStorage.getItem(userDB)
-        
-        !UserData && this.setDataInit()
-
+        let UserData = cc.sys.localStorage.getItem(userDB)     
+        !UserData && this.setDataInit();
+        if (!window._tempData) {
+            window._tempData = {
+                level: 0,
+                score: 0,
+                playerName: 'Ninja',
+            }
+        }
         // wait data if init
         UserData = JSON.parse(cc.sys.localStorage.getItem(userDB))
         if (UserData.playerLevel > GameConfig.levelMax) {
@@ -69,8 +87,9 @@ cc.Class({
         }
 
         window.UserData = UserData
-        // SET level
-        this.level = UserData.playerLevel
+        // SET tempory config
+        this.level = window._tempData.level
+        this.score = window._tempData.score
     },
 
     loadLevelConfig(i = 0) {
@@ -144,16 +163,42 @@ cc.Class({
     },
 
     levelDisplay() {
-        this.levelLabel.string = 'Level ' + (this.level + 1)
+        this.levelLabel.string = 'Level ' + (window._tempData.level + 1)
     },
 
     loseAction() {
         this.loseScreen.active = true
+        let userRank = this.getPlayerRank()
+        if (userRank) {
+            this.userRank = userRank
+            this.scoreEndLabel.string = this.score
+            this.newHighscoreScreen.active = true
+        }
+    },
+
+    updateHighscore() {
+        this.updateHighscore = true;
+        if (this.updateHighscore) {
+            // cc.log(this.highscoreEditbox.string)
+            let userData = window.UserData
+            let rankBoard = userData.rankBoard
+            let userRank = this.userRank
+            let userScore = this.score
+            let userName = this.highscoreEditbox.string
+            rankBoard.splice(userRank, 0, {
+                name: userName,
+                score: userScore
+            })
+            rankBoard.pop()
+            this.saveGame()
+            this.reloadIntro()
+            this.updateHighscore = false
+        }
     },
 
     winAction() {
         this.winStatus = true
-        this.getPlayerRank()
+        window._tempData.score = this.score
         this.saveGame()
 
         setTimeout(() => { // wait destroy card animation
@@ -173,13 +218,8 @@ cc.Class({
         }
 
         if (userRank) {
-            rankBoard[userRank] = {
-                name: "You",
-                score: this.score
-            }
-            // EDIT rank board
-            window.UserData.rankBoard = rankBoard
-        }
+            return userRank
+        } else return false
     },
 
     getHighscore() {
@@ -189,7 +229,14 @@ cc.Class({
     reloadRound() {
         cc.director.loadScene('02.Game');
     },
-
+    reloadIntro() {
+        window._tempData = {
+            level: 0,
+            score: 0,
+            playerName: 'Ninja',
+        }
+        cc.director.loadScene('01.Intro')
+    },
     setDataInit() {
         const userDataInit = window.UserDataInit
         cc.sys.localStorage.setItem(userDB, JSON.stringify(userDataInit));

@@ -82,7 +82,6 @@ cc.Class({
         this.node.runAction(cc.fadeOut(0.3))
         this.sound = false
         this.status = false
-        
         // Play collect sound
         cc.audioEngine.play(this.collectSound, false, 0.2);        
     },

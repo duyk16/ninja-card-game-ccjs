@@ -10,10 +10,20 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
-
-    start () {
-
+    onLoad () {
+        function first(a, callback){
+            // Simulate a code delay
+            setTimeout( function(){
+              console.log(a);
+              callback()
+            }, 500 );
+          }
+          
+        function second(){
+            console.log(2);
+          }
+          
+        first(1, second)
     },
 
     getHighscore() {
@@ -22,6 +32,6 @@ cc.Class({
 
     playGame() {
         cc.director.loadScene('02.Game')
-    }
+    },
     // update (dt) {},
 });

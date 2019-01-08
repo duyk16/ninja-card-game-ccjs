@@ -13,7 +13,11 @@ cc.Class({
     },
 
     playAgain() {
-        window.UserData.playerLevel = 0
+        window._tempData = {
+            level: 0,
+            score: 0,
+            playerName: 'Ninja',
+        }
         this.game.saveGame()
         this.game.reloadRound()
     },

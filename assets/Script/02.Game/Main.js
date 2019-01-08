@@ -75,7 +75,7 @@ cc.Class({
             if (data === firstCard.data) {
                 // Gain Score and destroy
                 this.game.gainScore()
-                setTimeout(() => {
+                // setTimeout(() => {
                     // Destroy couple matched card
                     this.destroyCard(x, y)
                     this.destroyCard(firstCard.position.x, firstCard.position.y)
@@ -83,12 +83,15 @@ cc.Class({
                     firstCard.position.x = null
                     firstCard.position.y = null
                     this.lockCard = !this.lockCard
-                }, 500)       
+                // }, 500)       
             } else {
                 // Down this card
-                setTimeout(() => {
+                
                     this.downCardAction(x, y)
                     this.downCardAction(firstCard.position.x, firstCard.position.y)
+                
+                    // SET delay time for wait animation
+                setTimeout(() => {
                     firstCard.data = null
                     firstCard.position.x = null
                     firstCard.position.y = null
@@ -99,11 +102,15 @@ cc.Class({
     },
 
     destroyCard(x, y) {
-        this.cards[y][x].getComponent('Card').deleteCard()
+        setTimeout(() => {
+            this.cards[y][x].getComponent('Card').deleteCard()
+        }, 500)
     },
 
     downCardAction(x, y) {
-        this.cards[y][x].getComponent('Card').downCardAction()
+        setTimeout(() => {
+            this.cards[y][x].getComponent('Card').downCardAction()
+        }, 500)
     },
 
     randomCards(w, h, diff) {

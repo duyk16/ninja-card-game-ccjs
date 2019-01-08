@@ -6,7 +6,7 @@ cc.Class({
             default: null,
             type: cc.Label
         },
-        bestScore: {
+        levelLabel: {
             default: null,
             type: cc.Label
         },
@@ -19,13 +19,13 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        this.bestScore.string = '1050'
+        this.levelLabel.string = `Level ${window._tempData.level + 1}`
     },
     onEnable() {
         cc.audioEngine.play(this.winSound, false, 1);
     },
     nextLevel() {
-        window.UserData.playerLevel += 1;
+        window._tempData.level += 1;
         this.game.saveGame()
         cc.director.loadScene('02.Game');
     }
