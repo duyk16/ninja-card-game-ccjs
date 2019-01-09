@@ -9,7 +9,7 @@ cc.Class({
     },
 
     onLoad() {
-        this.addPressSound()
+
     },
 
     onDestroy() {
@@ -17,7 +17,9 @@ cc.Class({
     },
 
     addPressSound() {
-        this.node.on('click', this.playPressSound, this)
+        if (window._tempData.sound) {
+            this.node.on('click', this.playPressSound, this)
+        }
     },
 
     playPressSound() {

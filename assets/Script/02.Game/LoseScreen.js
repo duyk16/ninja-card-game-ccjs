@@ -9,7 +9,9 @@ cc.Class({
     },
 
     onEnable() {
-        cc.audioEngine.play(this.loseSound, false, 1);
+        if (window._tempData.sound) {
+            cc.audioEngine.play(this.loseSound, false, 1);
+        }
     },
 
     playAgain() {

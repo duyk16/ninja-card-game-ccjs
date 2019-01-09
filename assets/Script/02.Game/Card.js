@@ -60,7 +60,9 @@ cc.Class({
         }, speedRotate)
 
         // play sound
-        this.sound && cc.audioEngine.play(this.flipSound, false, 1);
+        if (window._tempData.sound) {
+            this.sound && cc.audioEngine.play(this.flipSound, false, 1);
+        }
         
     },
 
@@ -83,6 +85,8 @@ cc.Class({
         this.sound = false
         this.status = false
         // Play collect sound
-        cc.audioEngine.play(this.collectSound, false, 0.2);        
+        if (window._tempData.sound) {
+            cc.audioEngine.play(this.collectSound, false, 0.2);        
+        }
     },
 });

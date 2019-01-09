@@ -1,5 +1,5 @@
 window.GameConfig = {
-    levelMax: 9,
+    levelMax: 18,
     level: [
         {
             index: 1,
@@ -11,28 +11,28 @@ window.GameConfig = {
         {
             index: 2,
             size: { x: 4, y: 2 },
-            diff: 2,
+            diff: 3,
             point: 15,
             time: 30
         },
         {
             index: 3,
             size: { x: 4, y: 2 },
-            diff: 3,
+            diff: 4,
             point: 20,
             time: 40
         },
         {
             index: 4,
             size: { x: 8, y: 3 },
-            diff: 3,
+            diff: 5,
             point: 20,
             time: 50
         },
         {
             index: 5,
             size: { x: 8, y: 3 },
-            diff: 5,
+            diff: 6,
             point: 25,
             time: 60
         },
@@ -46,30 +46,79 @@ window.GameConfig = {
         {
             index: 7,
             size: { x: 9, y: 4 },
+            diff: 8,
+            point: 25,
+            time: 70
+        },
+        {
+            index: 8,
+            size: { x: 9, y: 4 },
+            diff: 9,
+            point: 25,
+            time: 70
+        },
+        {
+            index: 10,
+            size: { x: 9, y: 4 },
             diff: 10,
             point: 30,
             time: 80
         },
         {
-            index: 8,
+            index: 11,
             size: { x: 9, y: 4 },
             diff: 11,
             point: 35,
             time: 90
         },
         {
-            index: 9,
+            index: 12,
             size: { x: 9, y: 4 },
             diff: 12,
             point: 40,
-            time: 95
+            time: 90
         },
         {
-            index: 10,
+            index: 13,
+            size: { x: 9, y: 4 },
+            diff: 13,
+            point: 40,
+            time: 90
+        },
+        {
+            index: 14,
+            size: { x: 9, y: 4 },
+            diff: 14,
+            point: 40,
+            time: 90
+        },
+        {
+            index: 15,
             size: { x: 9, y: 4 },
             diff: 15,
+            point: 40,
+            time: 90
+        },
+        {
+            index: 16,
+            size: { x: 9, y: 4 },
+            diff: 16,
             point: 45,
-            time: 100
+            time: 90
+        },
+        {
+            index: 17,
+            size: { x: 9, y: 4 },
+            diff: 17,
+            point: 45,
+            time: 90
+        },
+        {
+            index: 18,
+            size: { x: 9, y: 4 },
+            diff: 18,
+            point: 45,
+            time: 90
         },
     ],
 }
@@ -88,5 +137,13 @@ window.UserDataInit = {
         { name: "Ninja Bot", score: 100 },
     ],
 }
-window.test = 1
+
+if (!window._tempData) {
+    window._tempData = {
+        level: 0,
+        score: 0,
+        playerName: 'Ninja',
+        sound: true,
+    }
+}
 // cc.log(cc.sys.localStorage.getItem('userNinjaCard'))

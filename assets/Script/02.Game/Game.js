@@ -73,13 +73,6 @@ cc.Class({
     loadUserData() {
         let UserData = cc.sys.localStorage.getItem(userDB)     
         !UserData && this.setDataInit();
-        if (!window._tempData) {
-            window._tempData = {
-                level: 0,
-                score: 0,
-                playerName: 'Ninja',
-            }
-        }
         // wait data if init
         UserData = JSON.parse(cc.sys.localStorage.getItem(userDB))
         if (UserData.playerLevel > GameConfig.levelMax) {
@@ -226,7 +219,13 @@ cc.Class({
         cc.director.loadScene('03.Highscore')
     },
 
-    reloadRound() {
+    reloadGame() {
+        window._tempData = {
+            level: 0,
+            score: 0,
+            playerName: 'Ninja',
+            sound: true,
+        }
         cc.director.loadScene('02.Game');
     },
     reloadIntro() {
@@ -245,5 +244,9 @@ cc.Class({
     saveGame() {
         const userData = window.UserData
         cc.sys.localStorage.setItem(userDB, JSON.stringify(userData));
-    }
+    },
+
+    changeSound() {
+        window._tempData.sound = !window._tempData.sound
+    },
 });

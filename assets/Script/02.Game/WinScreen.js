@@ -22,7 +22,9 @@ cc.Class({
         this.levelLabel.string = `Level ${window._tempData.level + 1}`
     },
     onEnable() {
-        cc.audioEngine.play(this.winSound, false, 1);
+        if (window._tempData.sound) {
+            cc.audioEngine.play(this.winSound, false, 1)
+        }
     },
     nextLevel() {
         window._tempData.level += 1;
