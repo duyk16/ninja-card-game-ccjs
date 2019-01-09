@@ -21,6 +21,6 @@ cc.Class({
             playerName: 'Ninja',
         }
         this.game.saveGame()
-        this.game.reloadRound()
+        this.game.reloadGame()
     },
 });
